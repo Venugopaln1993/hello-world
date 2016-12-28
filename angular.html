@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  $http.get('http://krispypapad.herokuapp.com/fetch_article').success(function (data) {	
+      $scope.myWelcome = data.response;
+ 
+    });  
+});
+</script>
+<title>PARSING</title>
+</head>
+
+<body ng-controller="myCtrl">
+
+<div> 
+
+<table class="table table-bordered table-hover">
+	<tr class="active">
+		<td colspan="8"><img src="image/angularjs.png " height="150px" width="100%"/></td>
+	</tr>
+	<tr style="color:#B74934;" class="active">
+		<th>ID</th>
+		<th>OID</th>
+		<th>AUTHOR</th>
+		<th>TITLE</th>
+		<th>CONTENT</th>
+		<th>GRAPHICS_LINK</th>
+		<th>ORIGINAL_ARTICLE_LINK</th>
+		<th>LIKES_COUNT</th>
+	</tr>
+	</tr>
+    <tr ng-repeat="x in myWelcome" class="bg-warning">
+		<td style="color:RoyalBlue;">{{x.id}}</td>
+		<td style="color:RoyalBlue;">{{x._id.$oid}}</td>
+		<td style="color:RoyalBlue;">{{x.author}}</td>
+		<td style="color:RoyalBlue;">{{x.title}}</td>
+		<td style="color:RoyalBlue;">{{x.content}}</td>
+		<td style="color:RoyalBlue;">{{x.graphics_link}}</td>
+		<td style="color:RoyalBlue;">{{x.original_article_link}}</td>
+		<td style="color:RoyalBlue;">{{x.likes_count}}</td>
+		
+	</tr>
+</table>
+
+</div>
+
+
+
+
+
+</body>
+</html>
